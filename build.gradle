@@ -3,15 +3,16 @@ plugins {
     id 'war'
 }
 
-task stage(){
-    dependsOn(clean, war)
-}
-war.mustRunAfter(clean)
 
-task copyToLib(type: Copy){
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
     into "$buildDir/server"
-    from(configurations.compile){
-        include "webapp-runner"
+    from(configurations.compile) {
+        include "webapp-runner*"
     }
 }
 

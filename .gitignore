@@ -2,6 +2,7 @@
 /build/
 .idea
 build
+target
 out
 *.iml
 *.ipr
