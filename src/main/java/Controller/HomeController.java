@@ -25,9 +25,13 @@ public class HomeController extends HttpServlet {
         return new UserVO(sb.toString());
     }
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserDAO userDAO = new UserDAO();
-        for(int i = 0;i<10;i++) userDAO.insert(User(45));
-        response.getWriter().println(userDAO.getList());
+        if(PersistenceDAO.getSessionFactory()==null){
+            response.getWriter().println("Session Factory null");
+        }else{
+            UserDAO userDAO = new UserDAO();
+            for(int i = 0;i<10;i++) userDAO.insert(User(45));
+            response.getWriter().println(userDAO.getList());
+        }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request,response);
