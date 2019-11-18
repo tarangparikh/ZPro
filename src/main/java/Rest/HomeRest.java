@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/home")
 public class HomeRest {
+
     static final Gson gson = new Gson();
 
     @GET
@@ -17,5 +18,6 @@ public class HomeRest {
     public Response getData(){
         return Response.ok(gson.toJson("Home"), MediaType.APPLICATION_JSON).build();
     }
+
 
 }

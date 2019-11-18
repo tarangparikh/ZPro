@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">tarang</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zpro?userSSL=false</property>
+        <property name="hibernate.connection.username">tarang</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.order_updates">true</property>
+        <property name="hibernate.order_inserts">true</property>
+        <property name="hibernate.jdbc.batch_size">100</property>
+        <property name="hibernate.jdbc.fetch_size">400</property>
+        <property name="hbm2ddl.auto">create-drop</property>
+
+        <mapping class="vo.UserVO"></mapping>
+
+
+
+    </session-factory>
+</hibernate-configuration>
