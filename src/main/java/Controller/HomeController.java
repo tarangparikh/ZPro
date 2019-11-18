@@ -27,6 +27,7 @@ public class HomeController extends HttpServlet {
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if(PersistenceDAO.getSessionFactory()==null){
             response.getWriter().println("Session Factory null");
+            response.getWriter().println(System.getenv("JDBC_DATABASE_URL"));
         }else{
             UserDAO userDAO = new UserDAO();
             for(int i = 0;i<10;i++) userDAO.insert(User(45));
