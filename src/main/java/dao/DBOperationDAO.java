@@ -19,6 +19,7 @@ public class DBOperationDAO {
     }
     public Session openCurrentSessionWithTransaction(){
         currentSession = PersistenceDAO.getSessionFactory().getCurrentSession();
+
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
