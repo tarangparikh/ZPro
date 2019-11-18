@@ -13,17 +13,17 @@ public class PersistenceDAO {
     private static final SessionFactory sessionFactory = buildSessionFactory();
     private static SessionFactory buildSessionFactory(){
         try{
-            Configuration configuration = new Configuration().configure();
-            StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
-            standardServiceRegistryBuilder.applySettings(configuration.getProperties());
-            String HEROKU_JDBC_URL = System.getenv("JDBC_DATABASE_URL");
-            if(HEROKU_JDBC_URL!=null) {
-                Map<String,String> map = new HashMap<>();
-                map.put("hibernate.connection.url",HEROKU_JDBC_URL);
-                standardServiceRegistryBuilder.applySettings(map);
+            Map<String,String> jdbcUrlSettings = new HashMap<>();
+            String jdbcDbUrl = System.getenv("JDBC_DATABASE_URL");
+            if (null != jdbcDbUrl) {
+                jdbcUrlSettings.put("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
             }
-            ServiceRegistry serviceRegistry = standardServiceRegistryBuilder.build();
-            return configuration.buildSessionFactory(serviceRegistry);
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().
+                    configure("hibernate.cfg.xml").
+                    applySettings(jdbcUrlSettings).
+                    build();
+            return new Configuration().configure().buildSessionFactory(serviceRegistry);
         }catch (Exception e){
             e.printStackTrace();
             return null;
