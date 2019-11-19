@@ -16,7 +16,6 @@ import java.util.Random;
 @WebServlet(name = "HomeController",urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
     private UserVO User(int size){
-        UserVO userVO = new UserVO();
         StringBuilder sb = new StringBuilder();
         Random random = new Random(26);
         while (size-->0){
